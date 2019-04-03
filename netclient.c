@@ -17,7 +17,7 @@ main ()
 	socklen_t len;
 	struct sockaddr_in address;
 	int result;
-	float liczba;
+	double liczba;
 	int length;
 
 	/*  Create a socket for the client.  */
@@ -44,13 +44,13 @@ main ()
 	/*  We can now read/write via sockfd.  */
 	printf("Podaj liczbe ktora chcesz spierwiastkowac: \n");
 	scanf("%lf", &liczba);
-	write (sockfd, &liczba, sizeof(float));
-	read (sockfd, &liczba, sizeof(float));
+	write (sockfd, &liczba, sizeof(double));
+	read (sockfd, &liczba, sizeof(double));
 	read (sockfd, &length, sizeof(int));
 	char h[length];
 	read (sockfd, &h, length);
-	printf ("sqrt from server = %f\n", liczba);
-	printf ( "Current date and time:\n" );
+	printf ("😦️ sqrt from server ☺️ = %.4f\n", liczba);
+	printf ( "Current date and time: 🏖️ \n" );
 	printf ("%s\n",h);
 	close (sockfd);
 	exit (0);

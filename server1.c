@@ -4,6 +4,7 @@
 #include <netinet/in.h>
 #include <signal.h>
 #include <unistd.h>
+#include <time.h>
 #include <math.h>
 #include <string.h>
 
@@ -31,6 +32,7 @@ main ()
 	{
 		double liczba;
 		double liczba2;
+		
 
 		printf ("server waiting\n");
 
@@ -54,6 +56,14 @@ main ()
 		h[length-1] ='\0';
 
 		read (client_sockfd, &liczba,sizeof(double));
+
+		char *czy = (char*)&liczba;
+			if(*czy){
+			printf("Litlle endian");
+			} else{
+			printf("Big endian");
+			}
+
 		sleep (2);
 		liczba2 = sqrt(liczba);
 		liczba = liczba2;
@@ -61,5 +71,6 @@ main ()
 		write (client_sockfd, &length, sizeof(int));
 		write (client_sockfd, &h, length);
 		close (client_sockfd);
+	
 	}
 }
